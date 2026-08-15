@@ -42,17 +42,17 @@
 
 | Test ID | Scenario | Expected Result | Related Control | Actual Result | Pass/Fail |
 |---|---|---|---|---|---|
-| TC-22 | PIM-eligible admin attempts action without activating role | Action blocked | CTRL-12 | | |
-| TC-23 | PIM activation submitted without required approval | Role remains inactive, access denied | CTRL-12 | | |
+| TC-13 | PIM-eligible admin attempts action without activating role | Action blocked | CTRL-12 | | |
+| TC-14 | PIM activation submitted without required approval | Role remains inactive, access denied | CTRL-12 | | |
 
 ## 6. Entitlement Management Test Cases
 
 | Test ID | Scenario | Expected Result | Related Control | Actual Result | Pass/Fail |
 |---|---|---|---|---|---|
-| TC-24 | User requests an access package | Request appears in approver's queue with justification | CTRL-13 | | |
-| TC-25 | Approver grants request | User added to corresponding group automatically | CTRL-13 | | |
-| TC-26 | Access package assignment expires | User automatically removed from corresponding group | CTRL-14, CTRL-16, CTRL-17 | | |
-| TC-27 | Privileged access package requested | Requires both approval stages before grant | CTRL-15 | | |
+| TC-16 | User requests an access package | Request appears in approver's queue with justification | CTRL-13 | | |
+| TC-17 | Approver grants request | User added to corresponding group automatically | CTRL-13 | | |
+| TC-18 | Access package assignment expires | User automatically removed from corresponding group | CTRL-14, CTRL-16, CTRL-17 | | |
+| TC-19 | Privileged access package requested | Requires both approval stages before grant | CTRL-15 | | |
 
 ---
 
