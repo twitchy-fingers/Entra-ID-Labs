@@ -1,4 +1,4 @@
-# Provision-EntraNewHires.ps1
+# EntraID_NewHires.ps1
 # Bulk-creates Entra ID users from EntraID_NewHires_WithDept.csv and assigns
 # them to their department's role-based group.
 #
