@@ -11,7 +11,7 @@ Import-Module Microsoft.Graph.Groups
 
 Connect-MgGraph -Scopes "User.ReadWrite.All", "Group.ReadWrite.All"
 
-$users = Import-Csv "C:\IAM-Lab\EntraID_NewHires_WithDept.csv" | Where-Object { $_.Status -eq "Active" }
+$users = Import-Csv "C:\IAM-Lab\EntraID_NewHires.csv" | Where-Object { $_.Status -eq "Active" }
 
 foreach ($u in $users) {
 
