@@ -10,11 +10,13 @@ and a mix of standard, elevated, and administrative access needs.
 |---|---|---|---|
 | Sales Rep | Sales | Standard | CRM (read/write own records), Email, Teams |
 | Sales Manager | Sales | Elevated | CRM (read/write all records), Sales reporting app |
-| Finance Analyst | Finance | Standard | Finance app (read/write), Expense system |
-| Finance Manager | Finance | Elevated | Finance app (approve/manage transactions) |
+| Finance Analyst | Finance | Standard | Quickbooks (read/write), Expense system |
+| Finance Manager | Finance | Elevated | Quickbooks (approve/manage transactions) |
 | HR Generalist | HR | Standard | HRIS (read/write employee records) |
-| IT Support | IT | Elevated | Helpdesk app, password reset rights (limited) |
+| IT Support | IT | Elevated | SuperOps, NinjaOne, password reset rights (limited) |
 | IT Admin | IT | Privileged | Entra ID admin roles (PIM-eligible only) |
+| Junior Engineer | | Engineering | | Standard | SolidWorks (read/write) |
+| Senior Engineer | | Engineering | | Elevated | SolidWorks (read/write/execute) |
 | Standard Employee | All | Baseline | Email, Teams, SharePoint (dept. site only) |
 
 ## Design Principles
