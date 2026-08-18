@@ -1,23 +1,22 @@
 # Role Definitions — Sample Organization
 
 ## Organization Context
-Simulated mid-size company (danotech.onmicrosoft.com) with 5 departments
+Simulated mid-size company (danotech.onmicrosoft.com) with 6 departments
 and a mix of standard, elevated, and administrative access needs.
 
 ## Roles
-
 | Role Name | Department | Access Level | Applications/Resources |
 |---|---|---|---|
-| Sales Rep | Sales | Standard | CRM (read/write own records), Email, Teams |
-| Sales Manager | Sales | Elevated | CRM (read/write all records), Sales reporting app |
-| Finance Analyst | Finance | Standard | Quickbooks (read/write), Expense system |
-| Finance Manager | Finance | Elevated | Quickbooks (approve/manage transactions) |
-| HR Generalist | HR | Standard | HRIS (read/write employee records) |
-| IT Support | IT | Elevated | SuperOps, NinjaOne, password reset rights (limited) |
+| Sales Rep | Sales | Standard | Salesforce CRM (read/write own records), Outlook, Teams |
+| Sales Manager | Sales | Elevated | Salesforce CRM (read/write all records), Power BI Sales Dashboard |
+| Finance Analyst | Finance | Standard | Quickbooks (read/write), Concur Expense |
+| Finance Approver | Finance | Elevated | Quickbooks (approve transactions) |
+| HR Generalist | HR | Standard | Workday (read/write employee records) |
+| Junior Engineer | Engineering | Standard | GitHub (read/write own repos), Jira, Jenkins (trigger builds) |
+| Senior Engineer | Engineering | Elevated | GitHub (admin on team repos), Jira (admin), Azure DevOps (release approvals) |
+| IT Support | IT | Elevated | ServiceNow Helpdesk, password reset rights (limited) |
 | IT Admin | IT | Privileged | Entra ID admin roles (PIM-eligible only) |
-| Junior Engineer | Engineering | Standard | SolidWorks (read/write) |
-| Senior Engineer | Engineering | Elevated | SolidWorks (read/write/execute) |
-| Standard Employee | All | Baseline | Email, Teams, SharePoint (dept. site only) |
+| Standard Employee | All | Baseline | Outlook, Teams, SharePoint (dept. site only) |
 
 ## Design Principles
 - Every role maps to the minimum access required to perform that job function
