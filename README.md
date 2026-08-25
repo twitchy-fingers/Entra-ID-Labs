@@ -83,7 +83,7 @@ Privileged access (`SG-IT-Admins`) is kept as a separate, deliberately small gro
 
 ## Testing
 
-A 12-case test matrix validates provisioning, transfer, deprovisioning, and audit trail integrity — including the disable-vs-session-revocation distinction and dynamic group auto-update behavior.
+A 15-case test matrix validates provisioning, transfer, deprovisioning, and audit trail integrity — including the disable-vs-session-revocation distinction and dynamic group auto-update behavior.
 
 Full matrix: `/test-cases/test-matrix.md`
 
