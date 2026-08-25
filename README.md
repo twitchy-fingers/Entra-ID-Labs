@@ -35,7 +35,8 @@ Each lab branch contains its own `README.md` with:
 | # | Lab | Branch | Status | Summary |
 |---|---|---|---|---|
 | 1 | Joiner-Mover-Leaver (JML) | [`lab/jml`](../../tree/lab/jml) | ✅ Complete | Simulates the employee lifecycle in Entra ID — provisioning a new hire (Joiner), handling an internal transfer with group/role changes (Mover), and deprovisioning on exit (Leaver). Covers dynamic groups, group-based licensing, access assignment, and offboarding (account disable, license removal, access revocation). |
-| 2 | Role-Based Access Control (RBAC) | [`lab/rbac`](../../tree/lab/rbac) | ✅ Complete | Builds out a least-privilege access model using Entra ID built-in roles, custom roles, and administrative units. Covers role assignment scope (tenant vs. AU-scoped), Privileged Identity Management (PIM) for just-in-time elevation, and validating effective permissions. |
+| 2 | Role-Based Access Control (RBAC) | [`lab/rbac`](../../tree/lab/rbac) | ⏳ In Progress | Builds out a least-privilege access model using Entra ID built-in roles, custom roles, and administrative units. Covers role assignment scope (tenant vs. AU-scoped), Privileged Identity Management (PIM) for just-in-time elevation, and validating effective permissions. |
+| 3 | Single Sign-On (SSO) | [`lab/sso`](../../tree/lab/sso) | ⏳ In Progress |  |
 
 ## Lab Summaries
 
@@ -64,6 +65,10 @@ Each lab branch contains its own `README.md` with:
 **Key concepts covered:** built-in vs. custom roles, Administrative Units, least privilege, PIM eligible vs. active assignments, access validation.
 
 ➡️ Full guide: see the `README.md` on the [`lab/rbac`](../../tree/lab/rbac) branch.
+
+### 3. SSO Lab — `lab/sso`
+
+**Goal:** 
 
 ## Prerequisites (general, applies across labs)
 
