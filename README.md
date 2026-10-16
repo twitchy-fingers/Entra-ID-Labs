@@ -1,90 +1,83 @@
-# Entra-ID-Labs
+# Entra ID Identity Lifecycle & RBAC Lab
 
-A hands-on lab series covering identity and access management scenarios in Microsoft Entra ID (Azure AD), built against the **danotech.onmicrosoft.com** tenant.
+> Joiner-Mover-Leaver (JML) automation, role-based access control (RBAC), privileged access management, and audit monitoring in Microsoft Entra ID, built and validated in the lab tenant `danotech.onmicrosoft.com`.
 
-This `main` branch is the landing page for the project. Each individual lab lives in its own branch, with a full step-by-step guide, scripts/screenshots (where applicable), and cleanup instructions. Use the table below to jump to a lab.
+## What this lab demonstrates
 
-## Tenant / Environment
+A mature IAM program does four things: it **designs** an access model, **implements** it, **validates** that it enforces what it claims, and **monitors** it over time. This repo builds one fictional company's identity program end to end, in phases that each stand alone but plug into the same tenant, the same ten employees, and the same role catalog.
 
-| Item | Value |
-|---|---|
-| Tenant name | danotech.onmicrosoft.com |
-| Tenant type | Microsoft Entra ID (Azure AD) |
-| Licensing assumed | Entra ID P1/P2 (noted per-lab if a feature requires P2, e.g. Access Reviews, PIM) |
-| Admin role used | Global Administrator (lab/sandbox only — not representative of least-privilege practice) |
+| Stage | What it proves | Phases |
+|---|---|---|
+| Lifecycle | Identities are created, changed, and removed from an authoritative HR feed | 1 |
+| Access design | Every job function maps to the minimum access it needs | 2–4 |
+| Authentication | Users sign in once (SSO) with strong, risk-aware MFA | 5–6 |
+| Privileged and cloud access | Admins have no standing privilege; cloud access is scoped precisely | 7–8 |
+| Governance | Access is requested, approved, expires, and is re-certified with audit-ready evidence | 9–10 |
+| Monitoring | Logs prove who used which access, when, and who granted it | 11 |
 
-> ⚠️ **Lab disclaimer**: This tenant is a personal/sandbox environment used for learning and demonstration purposes only. Configurations here are not hardened for production use. Do not replicate role assignments or trust settings as-is in a production tenant without a security review.
+## Build phases
 
-## How this repo is organized
-
-- **`main`** — this README. Index of all labs, prerequisites, and general tenant notes.
-- **`lab/JML`** — Joiner-Mover-Leaver (JML) lifecycle lab.
-- **`lab/RBAC`** — Role-Based Access Control (RBAC) lab.
-- Future labs will be added below as new branches, following the naming convention `lab/<short-name>`.
-
-Each lab branch contains its own `README.md` with:
-1. Objective and scenario
-2. Prerequisites (roles, licensing, pre-created objects)
-3. Step-by-step configuration walkthrough
-4. Validation / testing steps
-5. Cleanup / teardown steps
-6. Lessons learned / notes
-
-## Lab Index
-
-| # | Lab | Branch | Status | Summary |
+| Phase | Focus | Builds on | Feeds into | Status |
 |---|---|---|---|---|
-| 1 | Joiner-Mover-Leaver (JML) | [`lab/jml`](../../tree/lab/JML) | ✅ Complete | Simulates the employee lifecycle in Entra ID — provisioning a new hire (Joiner), handling an internal transfer with group/role changes (Mover), and deprovisioning on exit (Leaver). Covers dynamic groups, group-based licensing, access assignment, and offboarding (account disable, license removal, access revocation). |
-| 2 | Role-Based Access Control (RBAC) | [`lab/rbac`](../../tree/lab/RBAC) | ⏳ In Progress | Builds out a least-privilege access model using Entra ID built-in roles, custom roles, and administrative units. Covers role assignment scope (tenant vs. AU-scoped), Privileged Identity Management (PIM) for just-in-time elevation, and validating effective permissions. |
-| 3 | Single Sign-On (SSO) | [`lab/sso`](../../tree/lab/SSO) | ⏳ In Progress |  |
+| 0 | Prerequisites and tenant setup | — | Everything | ☐ |
+| 1 | JML lifecycle automation | 0 | Who holds each role (all later phases) | ☐ |
+| 2 | RBAC design: role definitions, permission matrix, access control policy | 1 | The model every later phase enforces | ☐ |
+| 3 | Role groups (assigned + dynamic baseline) | 1, 2 | App assignment, SSO, CA targeting, reviews | ☐ |
+| 4 | App roles and an OIDC test app | 3 | Proves role claims; OIDC half of SSO | ☐ |
+| 5 | **SSO and federation:** SAML to Salesforce, Entra ID ↔ Okta federation | 3, 4 | Apps that MFA and access reviews protect | ☐ |
+| 6 | **MFA and Conditional Access:** authentication methods, risk-based policies | 3, 5 | MFA requirement for privileged access | ☐ |
+| 7 | **Privileged access management:** separate admin accounts, PIM just-in-time, credential vault | 1, 6 | Privileged access in reviews and monitoring | ☐ |
+| 8 | **Cloud IAM policy design:** least-privilege Azure custom roles, scoping, validation | 3, 7 | Cloud access in reviews | ☐ |
+| 9 | Entitlement management: access packages with approval and expiry | 3, 5 | Time-bound access for reviews | ☐ |
+| 10 | **Access reviews and audit readiness:** boundary tests, excessive/dormant access, remediation, review report | 1–9 | Audit evidence package | ☐ |
+| 11 | Audit logging and monitoring: log export, KQL, workbook | 1–10 | Ongoing assurance | ☐ |
+| 12 | Capstone: compliance mapping, architecture diagram, lessons learned | All | — | ☐ |
 
-## Lab Summaries
+## Repository structure
 
-### 1. Joiner-Mover-Leaver (JML) Lab — `lab/JML`
+```
+entra-id-jml-lab/
+├── README.md
+├── .gitignore
+├── config/
+│   └── jml-config.json            # Tenant settings and the approved role catalog
+├── data/                          # Fictional HR feed (+ invalid feed for negative tests)
+├── docs/
+│   ├── 00-prerequisites.md
+│   └── screenshot-checklist.md    # Every screenshot, where it goes, what it must show
+├── scripts/                       # Phase 1: JML scripts, each with a companion .md
+├── policies/                      # SOPs and policies from every phase
+├── compliance/
+│   └── control-traceability-matrix.md
+├── test-cases/                    # JML test matrix
+├── rbac/                          # Phases 2–4, 9
+├── sso-federation/                # Phase 5: Salesforce SAML, Okta federation
+├── mfa-conditional-access/        # Phase 6
+├── privileged-access/             # Phase 7: admin accounts, PIM, vault
+├── cloud-iam/                     # Phase 8: Azure custom roles
+├── access-reviews/                # Phase 10: review exports, findings, report
+├── audit-logging/                 # Phase 11: KQL, workbook, reports
+├── screenshots/                   # One subfolder per phase
+└── diagrams/                      # Phase 12
+```
 
-**Goal:** Model the end-to-end identity lifecycle for an employee in Entra ID.
+## Quick start
 
-- **Joiner:** Create a new user account, assign to department/role-based dynamic security groups, auto-assign licenses via group-based licensing, and grant baseline app access.
-- **Mover:** Simulate an internal role change — update user attributes (department, job title, manager) and observe dynamic group membership update automatically; adjust access accordingly.
-- **Leaver:** Disable the account, remove group memberships/licenses, revoke active sessions, and (optionally) convert to a soft-delete/offboarding state before final deletion.
+1. Complete [docs/00-prerequisites.md](docs/00-prerequisites.md).
+2. Update `config/jml-config.json` with your tenant domain and license SKU.
+3. Preview the joiner run without making changes:
+   ```powershell
+   cd scripts
+   ./joiner.ps1 -CsvPath ../data/sample-hr-feed.csv -WhatIf
+   ```
+4. Run it for real, then work through [test-cases/test-matrix.md](test-cases/test-matrix.md).
 
-**Key concepts covered:** dynamic membership rules, group-based licensing, attribute-driven access, session revocation, offboarding hygiene.
+## Licensing
 
-➡️ Full guide: see the `README.md` on the [`lab/jml`](../../tree/lab/jml) branch.
+This lab uses Microsoft Entra ID P2 (or Entra ID Governance) features: group-based app assignment, Conditional Access, ID Protection risk policies, PIM, access reviews, and entitlement management. A free trial in a dedicated lab tenant is enough. Phases 5, 7, and 8 also use free Salesforce Developer Edition, Okta developer, and Azure accounts.
 
-### 2. RBAC Lab — `lab/RBAC`
+## Safety notes
 
-**Goal:** Design and implement a least-privilege administrative access model in Entra ID.
-
-- Review Entra ID built-in directory roles vs. Azure RBAC roles (and how they differ in scope).
-- Create/assign built-in roles (e.g., User Administrator, Helpdesk Administrator) scoped to Administrative Units rather than the whole tenant.
-- Build a custom role with a narrowly-scoped permission set.
-- Configure Privileged Identity Management (PIM) for just-in-time, time-bound, approval-gated role activation.
-- Validate effective access using the "Check access" / sign-in logs and audit logs.
-
-**Key concepts covered:** built-in vs. custom roles, Administrative Units, least privilege, PIM eligible vs. active assignments, access validation.
-
-➡️ Full guide: see the `README.md` on the [`lab/rbac`](../../tree/lab/rbac) branch.
-
-### 3. SSO Lab — `lab/SSO`
-
-**Goal:** 
-
-## Prerequisites (general, applies across labs)
-
-- Access to the `danotech.onmicrosoft.com` tenant with Global Administrator (or the specific role called out in each lab).
-- Entra ID P1 at minimum; P2 required for PIM and Access Reviews (called out per-lab).
-- A small set of test/dummy user accounts (naming convention: `lab-<firstname>.<lastname>@danotech.onmicrosoft.com`) — created fresh per lab or reused where noted.
-- Basic familiarity with the Entra admin center (entra.microsoft.com) and PowerShell (Microsoft Graph SDK) for scripted steps.
-
-## Roadmap
-
-- [ ] Conditional Access lab
-- [ ] Privileged Identity Management (PIM) deep-dive
-- [ ] Access Reviews lab
-- [ ] Hybrid Identity / Entra Connect sync lab
-- [ ] App Registrations & Enterprise Applications (SSO/SCIM) lab
-
-## Notes
-
-This repo is a personal learning project tracking hands-on Entra ID practice. Feedback, corrections, and suggestions for additional lab scenarios are welcome via issues/PRs.
+- Lab tenant only. Every person in `data/` is fictional.
+- Temporary passwords are printed once to the console and **never written to disk or logs**. Never commit credentials, tenant IDs you consider sensitive, or subscription IDs.
+- The `logs/` folder is git-ignored because it contains run records with user identifiers.
