@@ -36,7 +36,7 @@ A mature IAM program does four things: it **designs** an access model, **impleme
 ## Repository structure
 
 ```
-entra-id-jml-lab/
+entra-id-lab/
 ├── README.md
 ├── .gitignore
 ├── config/
