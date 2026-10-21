@@ -1,0 +1,17 @@
+{
+  "tenantDomain": "danotech.onmicrosoft.com",
+  "upnFormat": "firstInitialLastName",
+  "licenseSkuPartNumber": "AAD_PREMIUM_P2",
+  "roles": {
+    "SalesRep":         { "roleGroup": "RBAC-SalesRep",         "privileged": false },
+    "SalesManager":     { "roleGroup": "RBAC-SalesManager",     "privileged": false },
+    "FinanceAnalyst":   { "roleGroup": "RBAC-FinanceAnalyst",   "privileged": false },
+    "FinanceApprover":  { "roleGroup": "RBAC-FinanceApprover",  "privileged": false },
+    "HRGeneralist":     { "roleGroup": "RBAC-HRGeneralist",     "privileged": false },
+    "ITSupport":        { "roleGroup": "RBAC-ITSupport",        "privileged": false },
+    "ITAdmin":          { "roleGroup": null,                    "privileged": true  },
+    "Engineer":         { "roleGroup": "RBAC-Engineer",         "privileged": false },
+    "CloudEngineer":    { "roleGroup": "RBAC-CloudEngineer",    "privileged": false },
+    "StandardEmployee": { "roleGroup": null,                    "privileged": false }
+  }
+}
