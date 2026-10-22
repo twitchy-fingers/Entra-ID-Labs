@@ -25,9 +25,6 @@ Get-MgSubscribedSku | Select-Object SkuPartNumber, ConsumedUnits, @{N='Enabled';
 
 The standalone P2 SKU is usually `AAD_PREMIUM_P2`. Trials and bundles use different values, so always use what your tenant reports.
 
-📸 **Screenshot P0-01** → `screenshots/setup/p2-license-active.png`
-Licenses → All products, showing the P2 / Governance product with its license count.
-
 ## 3. Emergency access (break-glass) account
 
 Before you build any access policies, create one cloud-only emergency access account (in this tenant: `breakglass@DanoTech.onmicrosoft.com`) with Global Administrator, a long random password stored offline, and exclusion from any Conditional Access policies you create later. This is standard practice and prevents locking yourself out of the lab.
@@ -62,7 +59,7 @@ Get-MgContext | Select-Object Account, TenantId, Scopes
 
 The first connection prompts you to consent for **Microsoft Graph Command Line Tools**. Consent on behalf of the organization so later scripts don't prompt each time. Each script requests only the scopes it needs.
 
-📸 **Screenshot P0-02** → `screenshots/setup/graph-connect-context.png`
+📸 **Screenshot P0-01** → `screenshots/setup/graph-connect-context.png`
 Terminal output of `Get-MgContext` showing the account and granted scopes. Blur the TenantId if you prefer.
 
 ## 6. Configure the repo
