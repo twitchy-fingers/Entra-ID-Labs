@@ -1,6 +1,6 @@
 # HR Feed Mapping — From Tenant Export to Authoritative Feed
 
-This document records how the Danotech user export (`users_10_20_2026_11_09_54_PM.csv`, 211 rows) was converted into the HR feed the lab provisions from (`data/sample-hr-feed.csv`, 209 rows). It is also the main input to the RBAC design in Phase 2.
+This document records how the Danotech user export (`new-hire-feed.csv`, 211 rows) was converted into the HR feed the lab provisions from (`data/sample-hr-feed.csv`, 209 rows). It is also the main input to the RBAC design in Phase 2.
 
 The lab treats the directory as **empty before Phase 1** (see `docs/00-prerequisites.md` §8). Every workforce user is recreated by the joiner from this feed, so the directory is built from HR data rather than from whatever was created by hand.
 
