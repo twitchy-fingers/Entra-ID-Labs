@@ -1,0 +1,2 @@
+EmployeeId,FirstName,LastName,Department,JobTitle,Role,ManagerEmployeeId,StartDate,UsageLocation
+E1999,Riley,Moss,Sales,Sales Director,SalesDirector,E1040,2026-10-20,US
