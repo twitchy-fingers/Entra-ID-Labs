@@ -1,17 +1,437 @@
 {
-  "tenantDomain": "danotech.onmicrosoft.com",
-  "upnFormat": "firstInitialLastName",
-  "licenseSkuPartNumber": "AAD_PREMIUM_P2",
-  "roles": {
-    "SalesRep":         { "roleGroup": "RBAC-SalesRep",         "privileged": false },
-    "SalesManager":     { "roleGroup": "RBAC-SalesManager",     "privileged": false },
-    "FinanceAnalyst":   { "roleGroup": "RBAC-FinanceAnalyst",   "privileged": false },
-    "FinanceApprover":  { "roleGroup": "RBAC-FinanceApprover",  "privileged": false },
-    "HRGeneralist":     { "roleGroup": "RBAC-HRGeneralist",     "privileged": false },
-    "ITSupport":        { "roleGroup": "RBAC-ITSupport",        "privileged": false },
-    "ITAdmin":          { "roleGroup": null,                    "privileged": true  },
-    "Engineer":         { "roleGroup": "RBAC-Engineer",         "privileged": false },
-    "CloudEngineer":    { "roleGroup": "RBAC-CloudEngineer",    "privileged": false },
-    "StandardEmployee": { "roleGroup": null,                    "privileged": false }
-  }
+  "tenant": {
+    "domain": "danotechinc.onmicrosoft.com",
+    "companyName": "Danotech Inc"
+  },
+  "licensing": {
+    "requiredSkus": [
+      "AAD_PREMIUM_P2"
+    ],
+    "governanceSkuPattern": "(?i)entra.*suite|identity_governance|id_governance",
+    "assignmentMode": "group",
+    "licenseGroups": {
+      "GRP-LIC-EntraIDP2": "AAD_PREMIUM_P2",
+      "GRP-LIC-EntraSuite": "<Entra Suite SkuPartNumber from Get-MgSubscribedSku>"
+    },
+    "note": "Run Get-MgSubscribedSku and paste the exact Entra Suite SkuPartNumber into licenseGroups. Lifecycle Workflows need the governance license on the users in scope."
+  },
+  "hrFeed": {
+    "path": "data/hr-feed.csv",
+    "keyColumn": "EmployeeID",
+    "sourceOfTruth": true
+  },
+  "upn": {
+    "format": "first.last",
+    "collisionSuffix": "number",
+    "mailNicknameFormat": "firstlast"
+  },
+  "attributeMap": {
+    "EmployeeID": "employeeId",
+    "FirstName": "givenName",
+    "LastName": "surname",
+    "DisplayName": "displayName",
+    "UserPrincipalName": "userPrincipalName",
+    "MailNickname": "mailNickname",
+    "Department": "department",
+    "JobTitle": "jobTitle",
+    "JobLevel": "onPremisesExtensionAttributes.extensionAttribute1",
+    "ManagerEmployeeID": "manager",
+    "OfficeLocation": "officeLocation",
+    "City": "city",
+    "State": "state",
+    "Country": "country",
+    "UsageLocation": "usageLocation",
+    "PostalCode": "postalCode",
+    "CostCenter": "employeeOrgData.costCenter",
+    "EmployeeType": "employeeType",
+    "HireDate": "employeeHireDate",
+    "ContractEndDate": "employeeLeaveDateTime",
+    "CompanyName": "companyName",
+    "EmploymentStatus": "accountEnabled"
+  },
+  "roleCatalog": {
+    "Executive": [
+      {
+        "jobTitle": "Chief Executive Officer",
+        "jobLevel": "Executive",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Chief Revenue Officer",
+        "jobLevel": "Executive",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Chief People Officer",
+        "jobLevel": "Executive",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Chief Information Officer",
+        "jobLevel": "Executive",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Chief Financial Officer",
+        "jobLevel": "Executive",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Chief Technology Officer",
+        "jobLevel": "Executive",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Executive Assistant",
+        "jobLevel": "Staff",
+        "headcount": 1
+      }
+    ],
+    "Sales": [
+      {
+        "jobTitle": "VP of Sales",
+        "jobLevel": "Director",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Sales Director",
+        "jobLevel": "Director",
+        "headcount": 2
+      },
+      {
+        "jobTitle": "Sales Team Lead",
+        "jobLevel": "Manager",
+        "headcount": 5
+      },
+      {
+        "jobTitle": "Account Manager",
+        "jobLevel": "Staff",
+        "headcount": 12
+      },
+      {
+        "jobTitle": "Inside Sales Specialist",
+        "jobLevel": "Staff",
+        "headcount": 12
+      },
+      {
+        "jobTitle": "Sales Development Associate",
+        "jobLevel": "Staff",
+        "headcount": 11
+      },
+      {
+        "jobTitle": "Sales Operations Analyst",
+        "jobLevel": "Staff",
+        "headcount": 4
+      }
+    ],
+    "HR": [
+      {
+        "jobTitle": "HR Director",
+        "jobLevel": "Director",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "People Operations Manager",
+        "jobLevel": "Manager",
+        "headcount": 3
+      },
+      {
+        "jobTitle": "HR Business Partner",
+        "jobLevel": "Staff",
+        "headcount": 8
+      },
+      {
+        "jobTitle": "Talent Acquisition Specialist",
+        "jobLevel": "Staff",
+        "headcount": 10
+      },
+      {
+        "jobTitle": "Compensation Analyst",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "People Operations Associate",
+        "jobLevel": "Staff",
+        "headcount": 8
+      },
+      {
+        "jobTitle": "HRIS Analyst",
+        "jobLevel": "Staff",
+        "headcount": 3
+      }
+    ],
+    "IT": [
+      {
+        "jobTitle": "IT Director",
+        "jobLevel": "Director",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "IT Operations Manager",
+        "jobLevel": "Manager",
+        "headcount": 3
+      },
+      {
+        "jobTitle": "IAM Engineer",
+        "jobLevel": "Staff",
+        "headcount": 4
+      },
+      {
+        "jobTitle": "Identity Governance Analyst",
+        "jobLevel": "Staff",
+        "headcount": 2
+      },
+      {
+        "jobTitle": "Cloud Infrastructure Engineer",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "Security Operations Analyst",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "Endpoint Engineer",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "Service Desk Analyst",
+        "jobLevel": "Staff",
+        "headcount": 11
+      }
+    ],
+    "Finance": [
+      {
+        "jobTitle": "Finance Director",
+        "jobLevel": "Director",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Controller",
+        "jobLevel": "Manager",
+        "headcount": 2
+      },
+      {
+        "jobTitle": "Senior Accountant",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "Staff Accountant",
+        "jobLevel": "Staff",
+        "headcount": 8
+      },
+      {
+        "jobTitle": "FP&A Analyst",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "Accounts Receivable Specialist",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "Payroll Specialist",
+        "jobLevel": "Staff",
+        "headcount": 5
+      },
+      {
+        "jobTitle": "Treasury Analyst",
+        "jobLevel": "Staff",
+        "headcount": 3
+      }
+    ],
+    "Engineering": [
+      {
+        "jobTitle": "VP of Engineering",
+        "jobLevel": "Director",
+        "headcount": 1
+      },
+      {
+        "jobTitle": "Engineering Lead",
+        "jobLevel": "Manager",
+        "headcount": 4
+      },
+      {
+        "jobTitle": "Backend Developer",
+        "jobLevel": "Staff",
+        "headcount": 8
+      },
+      {
+        "jobTitle": "Frontend Developer",
+        "jobLevel": "Staff",
+        "headcount": 6
+      },
+      {
+        "jobTitle": "Platform Engineer",
+        "jobLevel": "Staff",
+        "headcount": 5
+      },
+      {
+        "jobTitle": "Quality Assurance Analyst",
+        "jobLevel": "Staff",
+        "headcount": 5
+      },
+      {
+        "jobTitle": "Site Reliability Engineer",
+        "jobLevel": "Staff",
+        "headcount": 2
+      }
+    ]
+  },
+  "offices": [
+    {
+      "officeLocation": "Austin HQ",
+      "city": "Austin",
+      "state": "TX",
+      "country": "United States",
+      "usageLocation": "US",
+      "postalCode": "78701"
+    },
+    {
+      "officeLocation": "Atlanta",
+      "city": "Atlanta",
+      "state": "GA",
+      "country": "United States",
+      "usageLocation": "US",
+      "postalCode": "30303"
+    },
+    {
+      "officeLocation": "Seattle",
+      "city": "Seattle",
+      "state": "WA",
+      "country": "United States",
+      "usageLocation": "US",
+      "postalCode": "98101"
+    },
+    {
+      "officeLocation": "London",
+      "city": "London",
+      "state": "",
+      "country": "United Kingdom",
+      "usageLocation": "GB",
+      "postalCode": "EC2A 4NE"
+    }
+  ],
+  "policies": {
+    "provisioning": {
+      "engine": "PowerShell + Microsoft Graph",
+      "script": "phases/01-jml-lifecycle/Invoke-HRSync.ps1",
+      "matchOrder": [
+        "employeeId",
+        "userPrincipalName"
+      ],
+      "writePasswordsToDisk": false,
+      "neverDisableOrDelete": true
+    },
+    "lifecycleWorkflows": [
+      {
+        "name": "LCW-Joiner-PreHire",
+        "template": "Onboard pre-hire employee",
+        "trigger": "employeeHireDate",
+        "offsetDays": -3
+      },
+      {
+        "name": "LCW-Joiner-DayOne",
+        "template": "Onboard new hire employee",
+        "trigger": "employeeHireDate",
+        "offsetDays": 0
+      },
+      {
+        "name": "LCW-Mover",
+        "template": "Employee job profile change",
+        "trigger": "attributeChange",
+        "attributes": [
+          "department",
+          "jobTitle"
+        ]
+      },
+      {
+        "name": "LCW-Leaver-LastDay",
+        "template": "Offboard an employee",
+        "trigger": "employeeLeaveDateTime",
+        "offsetDays": 0
+      },
+      {
+        "name": "LCW-Leaver-Post",
+        "template": "Post-offboarding of an employee",
+        "trigger": "employeeLeaveDateTime",
+        "offsetDays": 30
+      }
+    ]
+  },
+  "emergencyAccess": {
+    "upnPrefix": "bg-emergency",
+    "count": 2,
+    "excludeFromConditionalAccess": true
+  },
+  "logging": {
+    "path": "logs",
+    "format": "csv",
+    "includePasswords": false
+  },
+  "externalApps": {
+    "salesforce": {
+      "edition": "Developer Edition",
+      "myDomainUrl": "<set in Phase 00>",
+      "protocol": "SAML",
+      "provisioning": "SCIM (optional, pilot set)",
+      "groups": {
+        "GRP-APP-Salesforce-Users": [
+          "Account Manager",
+          "Inside Sales Specialist",
+          "Sales Development Associate"
+        ],
+        "GRP-APP-Salesforce-Managers": [
+          "Sales Team Lead",
+          "Sales Director",
+          "VP of Sales"
+        ],
+        "GRP-APP-Salesforce-Admins": [
+          "Sales Operations Analyst"
+        ],
+        "GRP-APP-Salesforce-ReadOnly": [
+          "Chief Revenue Officer",
+          "Chief Executive Officer",
+          "FP&A Analyst"
+        ]
+      }
+    },
+    "okta": {
+      "plan": "Integrator Free Plan",
+      "orgUrl": "<set in Phase 00>",
+      "pattern": "Entra ID as external IdP for Okta",
+      "protocol": "OIDC or SAML",
+      "jitAttributes": [
+        "department",
+        "jobTitle",
+        "employeeId"
+      ],
+      "groups": [
+        "GRP-APP-Okta-Users"
+      ]
+    }
+  },
+  "protectedAccounts": {
+    "note": "JML scripts never disable, delete, or remove group memberships/roles from these accounts. Mover/attribute updates only.",
+    "userPrincipalNames": [
+      "daniel.opara@danotechinc.onmicrosoft.com"
+    ],
+    "upnPrefixes": [
+      "bg-emergency"
+    ]
+  },
+  "knownFindings": [
+    {
+      "id": "F-001",
+      "account": "daniel.opara@danotechinc.onmicrosoft.com",
+      "finding": "CEO daily-use account holds standing Global Administrator",
+      "remediation": "Phase 06: create adm-daniel.opara, move admin work there via PIM, remove standing GA from daniel.opara",
+      "status": "Open"
+    }
+  ]
 }
