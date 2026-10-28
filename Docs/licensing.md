@@ -5,13 +5,13 @@ Recorded in Phase 00 and re-verified with `phase-01-tenant-foundation/scripts/po
 | Field | Value |
 |---|---|
 | Tenant ID | `<fill in>` |
-| Recorded on | `<YYYY-MM-DD>` |
+| Recorded on | `<2026-10-27\>` |
 | Recorded by | Adaeze Nwosu |
 
 | Product | Total seats | Assigned | Trial? | Expiry / next lifecycle date |
 |---|---|---|---|---|
-| Microsoft Entra ID P2 | | | Yes | |
-| Microsoft Entra Suite | | | Yes | |
+| Microsoft Entra ID P2 | 25 | 1 | Yes | 12/22/2026 |
+| Microsoft Entra Suite | 25 | 1 | Yes | | 11/21/2026
 
 ## Licence-dependent phases
 
